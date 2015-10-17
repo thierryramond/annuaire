@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<title></title>
+	{%load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'annuaire/css/mystyle.css' %}"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'annuaire/css/jquery.dataTables.min.css' %}"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'annuaire/css/dataTables.editor.min.css' %}"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'annuaire/css/select.dataTables.css' %}"/>
+	<script type="text/javascript" src="{% static 'annuaire/js/jquery-2.1.4.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'annuaire/js/jquery.dataTables.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'annuaire/js/dataTables.select.js' %}"></script>
+	<script type="text/javascript" src="{% static 'annuaire/js/dataTables.editor.min.js' %}"></script>
+</head>
+<body>
+
+
+<div class="menu">
+<ul>
+	
+	<li> <a href="{%url 'listenew'%}">Liste</a></li>
+	<li> <a href="{%url 'nettoyage'%}">Nettoyage</a></li>
+	<li> <a href="{%url 'import'%}">Import</a></li>
+	<li> <a href="{%url 'listeold'%}">Listeold</a></li>
+	<li> <a href="{%url 'admin:index'%}">Admin</a></li>
+</ul>
+</div>
+
+
+{%block content%}
+{%endblock content%}
+
+</body>
+</html>

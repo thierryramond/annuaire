@@ -1,0 +1,79 @@
+{%extends 'annuaire/base.html' %}
+
+{% block content %}
+{% load staticfiles %}
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#tri').DataTable();
+});
+</script>
+
+
+<div class="vcontainer">
+
+<h1>{{titre}}</h1>
+
+<table id="tri" class="table table-bordered  table-condensed table-hover nowrap">
+
+<thead>
+<tr>
+	<th>id</th>
+	<th>Civilité</th>
+	<th>Nom</th>
+	<th>Prénom</th>
+	<th>Bâtiment</th>
+	<th>Bureau</th>
+	<th>Position</th>
+	<th>Grade</th>
+	<th>Fonctions</th>
+	<th>Directeur de thèse</th>
+	<th>Equipe</th>
+	<th>Arrivée</th>
+	<th>Départ</th>
+</tr>
+</thead>
+<tfoot>
+<tr>
+	<th>id</th>
+	<th>Civilité</th>
+	<th>Nom</th>
+	<th>Prénom</th>
+	<th>Bâtiment</th>
+	<th>Bureau</th>
+	<th>Position</th>
+	<th>Grade</th>
+	<th>Fonctions</th>
+	<th>Directeur de thèse</th>
+	<th>Equipe</th>
+	<th>Arrivée</th>
+	<th>Départ</th>
+</tr>
+</tfoot>
+<tbody>
+{% for membre in object_list %}
+	<tr>
+	<td style="width:3em; text-align:right;padding-right:10px;">{{membre.id}}</td>
+	<td style="width:3em; text-align:left;padding-left:10px;">{{membre.civilites}}</td>
+	<td style="text-align:left;padding-left:10px;">{{membre.nom}}</td>
+	<td style="text-align:left;padding-left:10px;">{{membre.prenom}}</td>
+	<td style="text-align:left;padding-left:10px;">{{membre.bat}}</td>
+	<td style="text-align:left;padding-left:10px;">{{membre.bureau}}</td>
+	<td style="text-align:left;padding-left:10px;">{{membre.position|lower}}</td>
+	<td style="width:3em; text-align:right;padding-right:10px;">{{membre.grades|default_if_none:""}}</td>
+	<td style="width:3em; text-align:right;padding-right:10px;">{{membre.fonctions|default_if_none:""}}</td>
+	<td style="text-align:left;padding-left:10px;">{{membre.directeur_these|default_if_none:""}}</td>
+	<td style="text-align:left;padding-left:10px;">{{membre.equipe}}</td>
+	<td style="text-align:left;padding-left:10px;">{{membre.entree|date:'d/m/Y'}}</td>
+	<td style="text-align:left;padding-left:10px;">{{membre.depart|date:'d/m/Y'}}</td>
+	</tr>
+{%endfor%}
+</tbody>  
+</table>
+</div>
+
+
+<script type="text/javascript" src="{% static 'annuaire/js/myscript.js' %}"></script>
+
+{%endblock content%}

@@ -1,0 +1,124 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,700&subset=latin,latin-ext);
+
+
+body{
+	display:-webkit-flex;
+	display:-ms-flexbox;
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items:flex-start;
+	font: 14px/1.5 'Open Sans', sans-serif;	
+	background-color: #fff;
+	padding-bottom: 70px;
+	padding-top: 70px;
+}
+
+table{
+	border-collapse: collapse;
+}
+
+
+tfoot {
+    display: table-header-group;
+}
+
+
+tfoot input {
+        width: 100%;
+        padding: 0px 5px;
+        text-align: center;
+        box-sizing: border-box;
+        background-color:  #CCC;
+        border: none;
+    }
+
+ tfoot th{
+ 	background-color:  #CCC;
+ }
+
+th{
+	border: 1px solid #aaa;
+	text-align: center;
+	background-color: rgba(0, 200, 120, .6);
+	font-weight:100;
+}
+
+td{
+	border: 1px solid #aaa;
+	text-align: center;
+	padding-left:5px;
+}
+
+.vcontainer{
+	display: -moz-flex;
+	-moz-box-flex-direction: column;
+	-moz-box-justify-content: center;
+	-moz-box-align-items: space-around;
+	display:-webkit-flex;
+	-webkit-flex-direction: column;
+	-webkit-justify-content: center;
+	-webkit-align-items: space-around;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-align-items: space-around;
+	    -ms-flex-align: space-around;
+	        align-items: space-around;
+}
+
+.hcontainer{
+	display: -moz-flex;
+	-moz-box-flex-flow: row nowrap;
+	-moz-box-justify-content: center;
+	-moz-box-align-items: flex-start;
+	display:-webkit-flex;
+	-webkit-flex-flow: row nowrap;
+	-webkit-justify-content: center;
+	-webkit-align-items: flex-start;
+	display: -ms-flexbox;
+	display: flex;
+	margin-top: 1em;
+	-webkit-flex-flow: row nowrap;
+	    -ms-flex-flow: row nowrap;
+	        flex-flow: row nowrap;
+	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-align-items: flex-start;
+	    -ms-flex-align: start;
+	        align-items: flex-start;
+}
+
+
+.menu{
+	display:flex;
+	background-color: #06a;
+	padding:0;
+	margin:0;
+}
+
+
+.menu ul{
+	display:flex;
+	list-style-type: none;
+	flex-direction: row;
+}
+
+.menu ul li{
+	display: inline-flex;
+	padding: 0px 20px;
+}
+
+.menu ul li a{
+	color:#fff;
+	text-decoration: none;
+}
+
+.menu ul li:hover {
+	background-color: #038;

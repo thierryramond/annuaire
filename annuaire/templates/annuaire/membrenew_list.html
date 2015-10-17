@@ -1,0 +1,142 @@
+{%extends 'annuaire/base.html' %}
+
+{% block content %}
+{% load staticfiles %}
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#tri').DataTable();
+});
+</script>
+
+
+
+<div class="vcontainer">
+
+<h1>Liste des membres - nouveau modèle</h1>
+
+<table id="tri" class="table table-bordered  table-condensed table-hover nowrap">
+<thead>
+<tr>
+	<th>id</th>
+	<th>Civilité</th>
+	<th>Nom</th>
+	<th>Prénom</th>
+	<th>Né(e) le</th>
+	<th>Bâtiment</th>
+	<th>Bureau</th>
+	<!--
+	<th>Photo</th>
+	<th>mail</th>
+	<th>Téléphone</th>
+	<th>Fax</th>
+	<th>Page web</th>
+	-->
+	<th>Equipe</th>
+	<th>Position</th>
+	<th>Quotité</th>
+	<th>Entré(e) le </th>
+	<th>Sorti(e) le </th>
+	<th>Fonction</th>
+	<th>Grade</th>
+	<th>Tutelle</th>
+<!--
+	<th>Section CNU</th>
+	<th>Habilitation</th>
+	<th>BAP</th>
+	<th>Directeur de thèse</th>
+	<th>Année de soutenance</th> 
+	<th>Mots-clés</th>
+	<th>Liste rouge</th>
+-->
+	<th>Créé le</th>
+	<th>Créé par</th>
+	<th>Modifié le</th>
+	<th>Modifié par</th>
+</tr>
+</thead>
+<tfoot>
+	<th>id</th>
+	<th>Civilité</th>
+	<th>Nom</th>
+	<th>Prénom</th>
+	<th>Né(e) le</th>
+	<th>Bâtiment</th>
+	<th>Bureau</th>
+	<!--
+	<th>Photo</th>
+	<th>mail</th>
+	<th>Téléphone</th>
+	<th>Fax</th>
+	<th>Page web</th>
+		-->
+	<th>Equipe</th>
+	<th>Position</th>
+	<th>Quotité</th>
+	<th>Entré(e) le </th>
+	<th>Sorti(e) le </th>
+	<th>Fonction</th>
+	<th>Grade</th>
+	<th>Tutelle</th>
+<!--
+	<th>Section CNU</th>
+	<th>Habilitation</th>
+	<th>BAP</th>
+	<th>Directeur de thèse</th>
+	<th>Année de soutenance</th> 
+	<th>Mots-clés</th>
+	<th>Liste rouge</th>
+-->
+	<th>Créé le</th>
+	<th>Créé par</th>
+	<th>Modifié le</th>
+	<th>Modifié par</th>
+</tfoot>
+<tbody>
+{% for membre in object_list %}
+	<tr>
+	<td style="width:3em; text-align:right;padding-right:10px;"><a href="{% url 'update' membre.id %}">{{membre.id}}</a></td>
+	<td style="width:3em; text-align:left;padding-left:10px;">{{membre.civilite}}</td>
+	<td style="text-align:left;padding-left:10px;">{{membre.nom}}</td>
+	<td style="text-align:left;padding-left:10px;">{{membre.prenom}}</td>
+	<td style="text-align:left;padding-left:10px;">{{membre.date_naissance|default_if_none:""}}</td>
+	<td style="text-align:left;padding-left:10px;">{{membre.batiment|default_if_none:""}}</td>
+	<td style="text-align:left;padding-left:10px;">{{membre.bureau|default_if_none:""}}</td>
+	<!--
+	<td style="text-align:left;padding-left:10px;"><a href="{{membre.photo_url}}">photo</a></td>
+	<td style="text-align:left;padding-left:10px;font-size:8px;">{{membre.mail|default_if_none:""}}</td>
+	<td style="text-align:left;padding-left:10px;font-size:8px;">{{membre.tel|default_if_none:""}}</td>
+	<td style="text-align:left;padding-left:10px;font-size:8px;">{{membre.fax|default_if_none:""}}</td>
+	<td style="text-align:left;padding-left:10px;font-size:8px;"><a href="{{membre.web|default_if_none:""}}">{{membre.web|default_if_none:""}}</a></td>
+	-->
+	<td style="text-align:left;padding-left:10px;">{{membre.equipe}}</td>
+	<td style="text-align:left;padding-left:10px;">{{membre.position|default_if_none:""}}</td>
+	<td style="text-align:left;padding-left:10px;">{{membre.quotite|default_if_none:""}}</td>
+	<td style="text-align:left;padding-left:10px;">{{membre.entree|date:'d/m/Y'}}</td>
+	<td style="text-align:left;padding-left:10px;">{{membre.depart|date:'d/m/Y'}}</td>
+	<td style="text-align:left;padding-left:10px;">{{membre.nature_poste|default_if_none:""}}</td>
+	<td style="width:3em; text-align:right;padding-right:10px;">{{membre.grade|default_if_none:""}}</td>
+	<td style="text-align:left;padding-left:10px;">{{membre.tutelle|default_if_none:""}}</td>
+<!--
+	<td style="text-align:left;padding-left:10px;">{{membre.cnu|default_if_none:""}}</td>
+	<td style="text-align:left;padding-left:10px;">{{membre.habilitation|default_if_none:""}}</td>
+	<td style="width:3em; text-align:right;padding-right:10px;">{{membre.bap|default_if_none:""}}</td>
+	<td style="text-align:left;padding-left:10px;">{{membre.directeur_these|default_if_none:""}}</td>
+	<td style="width:3em; text-align:right;padding-right:10px;">{{membre.annee_soutenance|default_if_none:""}}</td>
+	<td style="text-align:left;padding-left:10px;font-size:8px;">{{membre.mots_cles|default_if_none:""}}</td>
+	<td style="width:3em; text-align:right;padding-right:10px;">{{membre.liste_rouge|default_if_none:""}}</td>
+-->
+	<td style="text-align:left;padding-left:10px;">{{membre.cree_le|date:"d/m/Y"|default_if_none:""}}</td>
+	<td style="text-align:left;padding-left:10px;">{{membre.cree_par|default_if_none:""}}</td>
+	<td style="text-align:left;padding-left:10px;">{{membre.modifie_le|date:"d/m/Y"|default_if_none:""}}</td>
+	<td style="text-align:left;padding-left:10px;">{{membre.modifie_par|default_if_none:""}}</td>
+	</tr>
+{%endfor%}
+</tbody>  
+</table>
+</div>
+
+<script type="text/javascript" src="{% static 'annuaire/js/myscript.js' %}"></script>
+
+{%endblock content%}
