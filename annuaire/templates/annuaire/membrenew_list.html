@@ -100,7 +100,7 @@ $(document).ready(function(){
 	<td style="width:3em; text-align:left;padding-left:10px;">{{membre.civilite}}</td>
 	<td style="text-align:left;padding-left:10px;">{{membre.nom}}</td>
 	<td style="text-align:left;padding-left:10px;">{{membre.prenom}}</td>
-	<td style="text-align:left;padding-left:10px;">{{membre.date_naissance|default_if_none:""}}</td>
+	<td style="text-align:left;padding-left:10px;"><div style="display:none;">{{membre.date_naissance|date:'Y m d'}}</div>{{membre.date_naissance|default_if_none:""}}</td>
 	<td style="text-align:left;padding-left:10px;">{{membre.batiment|default_if_none:""}}</td>
 	<td style="text-align:left;padding-left:10px;">{{membre.bureau|default_if_none:""}}</td>
 	<!--
@@ -113,8 +113,8 @@ $(document).ready(function(){
 	<td style="text-align:left;padding-left:10px;">{{membre.equipe}}</td>
 	<td style="text-align:left;padding-left:10px;">{{membre.position|default_if_none:""}}</td>
 	<td style="text-align:left;padding-left:10px;">{{membre.quotite|default_if_none:""}}</td>
-	<td style="text-align:left;padding-left:10px;">{{membre.entree|date:'d/m/Y'}}</td>
-	<td style="text-align:left;padding-left:10px;">{{membre.depart|date:'d/m/Y'}}</td>
+	<td style="text-align:left;padding-left:10px;"><div style="display:none;">{{membre.entree|date:'Y m d'}}</div>{{membre.entree|date:'d/m/Y'}}</td>
+	<td style="text-align:left;padding-left:10px;"><div style="display:none;">{{membre.depart|date:'Y m d'}}</div>{{membre.depart|date:'d/m/Y'}}</td>
 	<td style="text-align:left;padding-left:10px;">{{membre.nature_poste|default_if_none:""}}</td>
 	<td style="width:3em; text-align:right;padding-right:10px;">{{membre.grade|default_if_none:""}}</td>
 	<td style="text-align:left;padding-left:10px;">{{membre.tutelle|default_if_none:""}}</td>
