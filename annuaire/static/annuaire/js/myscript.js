@@ -8,7 +8,6 @@
       //},
       "dom": '<"top" lf>t<"bottom" ip><"clear">',
       "autowidth": true,
-       paging: false,
        "lengthMenu": [ [30, 50, 100,-1], [30, 50, 100,"tous les"] ],
        "language":{
           "sSearch":  "Rechercher&nbsp;: ",

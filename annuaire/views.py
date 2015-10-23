@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from django.core.urlresolvers import reverse_lazy, reverse
+from django.contrib.auth import authenticate, login, logout
 
 from django.views.generic import View,TemplateView, FormView, ListView,\
 		DetailView, CreateView, UpdateView, DeleteView
@@ -9,9 +10,32 @@ from datetime import datetime
 from annuaire.forms import *
 
 
+class ConnexionView(FormView):
+	titre 			= "Connexion"
+	form_class 		= ConnexionForm
+	template_name 	= 'annuaire/connexion.html'
+	success_url 	= reverse_lazy('connexion')
+
+	def form_valid(self,form):
+		user 		= authenticate(
+		username	= form.cleaned_data['username'],
+		password	= form.cleaned_data['password']
+			) 
+		if user:                    # Si l'objet renvoyé n'est pas None
+			login(self.request,user)    # on connecte l'utilisateur
+		else:                       # sinon on affiche une erreur
+			error 	= True
+		return super(ConnexionView, self).form_valid(form)
+
+def deconnexion(request):
+	logout(request)
+	return HomeView.as_view()(request)
+
+
 class HomeView(TemplateView):
 	template_name = 'annuaire/home.html'
 	titre = "Annuaire du DMO"
+
 
 class MembreOldList(ListView):
 	titre 			= "Liste des membres - Old"
@@ -28,14 +52,20 @@ class MembreNewUpdate(UpdateView):
 	model = MembreNew
 	form_class = MembreNewForm
 	template_name = 'annuaire/membrenew_update.html'
-	
 
-	def form_valid(self, form):
-		form.instance.modif_par = self.request.user
-		return super(MembreNewUpdate, self).form_valid(form)
 
-	def get_success_url(self):
-		return '/membrenew_update/%s/' %self.object.next().id
+class MembreNewCreate(CreateView):
+	titre 			= "Nouveau membre"
+	form_class 		= MembreNewFormComplet
+	template_name 	= "annuaire/membrenew_create.html"
+	success_url 	= reverse_lazy('listenew')
+
+class MembreNewDelete(DeleteView):
+	titre 			= "Effacer un membre"
+	model 			= MembreNew
+	template_name 	= "annuaire/membrenew_delete.html"
+	success_url 	= reverse_lazy('listenew')
+		
 
 
 def nettoyage_depart(request):

@@ -1,0 +1,256 @@
+{%extends 'annuaire/base.html' %}
+
+{% block content %}
+
+<style type="text/css">
+.quotite, .entree, .sorti{
+	display: none;
+}
+.grade, .tutelle, .equipe, .cnu, .cn , .bap, .directeur_these, .habilitation, .date_soutenance{
+	display: none;
+}
+
+.bureau, .batiment, .mail, .telephone, .fax, .web {
+	display: none;
+}
+
+</style>
+
+
+<script type="text/javascript">
+$(function(){
+
+	$("#id_position").change(function(){ 
+		texte = $("#id_position").val();
+		if (texte == "activité" || texte == "CDD"){
+			$(".quotite").show();
+			$(".entree").show();
+			$(".sorti").hide();
+			$(".bureau").show();
+			$(".batiment").show();
+			$(".mail").show();
+			$(".telephone").show();
+			$(".fax").show();
+			$(".web").show();
+		};
+		if (texte == "associé" || texte == "émérite"){
+			$(".entree").show();
+			$(".quotite").hide();
+			$(".sorti").hide();
+			$(".bureau").show();
+			$(".batiment").show();
+			$(".mail").show();
+			$(".telephone").show();
+			$(".fax").show();
+			$(".web").show();
+		};
+		if (texte == "détachement" || texte == "délégation"){
+			$(".entree").show();
+			$(".quotite").hide();
+			$(".sorti").hide();
+			$(".bureau").hide();
+			$(".batiment").hide();
+			$(".mail").show();
+			$(".telephone").show();
+			$(".fax").show();
+			$(".web").show();
+		};
+		if (texte == "décès" || texte == "parti") {
+			$(".entree").show();
+			$(".quotite").hide();
+			$(".sorti").show();
+			$(".bureau").hide();
+			$(".batiment").hide();
+			$(".mail").hide();
+			$(".telephone").hide();
+			$(".fax").hide();
+			$(".web").hide();
+		};
+		if (texte == "retraité") {
+			$(".entree").show();
+			$(".quotite").hide();
+			$(".sorti").show();
+			$(".bureau").show();
+			$(".batiment").show();
+			$(".mail").show();
+			$(".telephone").show();
+			$(".fax").show();
+			$(".web").show();
+		};
+	});
+
+
+	$("#id_nature_poste").change(function(){
+		texte = $("#id_nature_poste").val();
+		if (texte=="chercheur"){
+			$(".grade").show();
+			$(".tutelle").show();
+			$(".equipe").show();
+			$(".cnu").hide();
+			$(".cn").show();
+			$(".bap").hide();
+			$(".directeur_these").hide();
+			$(".date_soutenance").hide();
+			$(".habilitation").show();
+
+		};
+		if (texte=="enseignant-chercheur"){
+			$(".grade").show();
+			$(".tutelle").show();
+			$(".equipe").show();
+			$(".cnu").show();
+			$(".cn").hide();
+			$(".bap").hide();
+			$(".directeur_these").hide();
+			$(".date_soutenance").hide();
+			$(".habilitation").show();
+		};
+		if (texte=="doctorant"){
+			$(".grade").hide();
+			$(".tutelle").show();
+			$(".equipe").show();
+			$(".cnu").hide();
+			$(".cn").hide();
+			$(".bap").hide(); 
+			$(".directeur_these").show();
+			$(".date_soutenance").show();
+			$(".habilitation").hide();
+		};
+		if (texte=="enseignant"){
+			$(".grade").show();
+			$(".tutelle").show();
+			$(".equipe").hide();
+			$(".cnu").hide();
+			$(".cn").hide();
+			$(".bap").hide();
+			$(".directeur_these").hide();
+			$(".date_soutenance").hide();
+			$(".habilitation").hide();
+		};
+		if (texte=="ingénieur"){
+			$(".grade").hide();
+			$(".tutelle").show();
+			$(".equipe").hide();
+			$(".cnu").hide();
+			$(".cn").hide();
+			$(".bap").hide();
+			$(".directeur_these").hide();
+			$(".date_soutenance").hide();
+			$(".habilitation").hide();
+		};
+	});
+
+});
+</script>
+
+
+<div class="vcontainer">
+
+	<h1>Nouveau Membre</h1>
+
+	<form action='.' method="POST">
+	{% csrf_token %}
+	<div class="hcontainer" style="margin-bottom:20px;">
+
+
+		<table>
+		<thead>
+			<th>Civilité</th>
+			<th>Nom</th>
+			<th>Prénom</th>
+			<th>Né(e) le</th>
+			<th>Photo</th>
+		</thead>
+		<tbody>
+			<td>{{form.civilite}}</td>
+			<td>{{form.nom.errors}} {{form.nom}}</td>
+			<td>{{form.prenom.errors}}{{form.prenom}}</td>
+			<td>{{form.date_naissance}}</td>
+			<td>{{form.photo_url}}</td>
+		</tbody>
+		</table>
+		<div style="width:2em;"></div>
+		<table>
+			<thead><th>Liste rouge</th></thead>
+			<tbody><td>{{form.liste_rouge}}</td></tbody>
+		</table>
+
+	</div>
+
+	<div class="hcontainer" style="margin-bottom:20px;">
+		<table>
+		<thead>
+			<th>Position</th>
+			<th class="quotite">Quotité</th>
+			<th class="entree">Entré(e) le</th>
+			<th class="sorti">Sorti(e) le</th>
+		</thead>
+		<tbody>
+			<td>{{form.position.errors}} {{form.position}}</td>
+			<td class="quotite">{{form.quotite}}</td>
+			<td class="entree">{{form.entree}}</td>
+			<td class="sorti".>{{form.depart}}</td>
+		</tbody>
+		</table>
+	</div>
+
+<div  class="hcontainer" style="margin-bottom:20px;">
+<table>
+	<thead>
+		<th>Rôle</th>
+		<th class="grade">Grade</th>
+		<th class="tutelle">Tutelle</th>
+		<th class="equipe">Equipe</th>
+		<th class="cnu">Section CNU</th>
+		<th class="cn">Section CN</th>
+		<th class="bap">BAP</th>
+		<th class="directeur_these">Directeur de thèse</th>
+		<th class="habilitation">Habilitation</th>
+		<th class="date_soutenance">Date de soutenance</th>
+	</thead>
+	<tbody>
+		<td>{{form.nature_poste.errors}}{{form.nature_poste}}</td>
+		<td class="grade">{{form.grade}}</td>
+		<td class="tutelle">{{form.tutelle}}</td>
+		<td class="equipe">{{form.equipe}}</td>
+		<td class="cnu">{{form.cnu}}</td>
+		<td class="cn">{{form.cn}}</td>
+		<td class="bap">{{form.bap}}</td>
+		<td class="directeur_these">{{form.directeur_these}}</td>
+		<td class="habilitation">{{form.habilitation}}</td>
+		<td class="date_soutenance">{{form.annee_soutenance}}</td>
+	</tbody>
+</table>
+</div>
+
+
+<div  class="hcontainer" style="margin-bottom:20px;">
+	<table>
+	<thead>
+		<th class="bureau">Bureau</th>
+		<th class="batiment">Bâtiment</th>
+		<th class="mail">Mail</th>
+		<th class="telephone">Téléphone</th>
+		<th class="fax">Fax</th>
+		<th class="web">Page web</th>
+	</thead>
+	<tbody>
+		<td class="bureau">{{form.bureau}}</td>
+		<td class="batiment">{{form.batiment}}</td>
+		<td class="mail">{{form.mail}}</td>
+		<td class="telephone">{{form.tel}}</td>
+		<td class="fax">{{form.fax}}</td>
+		<td class="web"
+		>{{form.web}}</td>
+	</tbody>
+	</table>
+</div>
+
+<div  class="hcontainer">
+	<input type="submit" value="enregistrer">
+</div>
+	</form>
+
+</div>
+
+{% endblock content %}

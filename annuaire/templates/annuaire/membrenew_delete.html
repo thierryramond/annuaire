@@ -1,0 +1,17 @@
+{%extends 'annuaire/base.html' %}
+
+{% block content %}
+<div class="vcontainer">
+
+<h1>{{view.titre}}</h1>
+
+<p>Etes vous sur(e) de vouloir effacer  <b>{{membrenew}}</b>? Cette action est irréversible.</p>
+
+<form action="{% url "delete" pk=membrenew.id %}" method="POST">
+	{% csrf_token %}
+	<input  type="submit" value="Oui. Effacer." />
+	<a  href="{% url "listenew" %}">Non. Annuler.</a></div>
+</form>
+
+</div>
+{% endblock %}

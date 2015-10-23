@@ -1,0 +1,25 @@
+{%extends 'annuaire/base.html'%}
+
+{% block content %}
+{% load staticfiles %}
+
+<div class="vcontainer">
+<h2>{{view.titre}}</h2>
+
+<br><br>
+
+{% if user.is_authenticated %}
+Vous êtes connecté!
+{% else %}
+<form method="post" action=".">
+{% csrf_token %}
+<table>
+	{{form.as_table}}
+</table>
+<input type="submit" value="Se connecter" />
+</form>
+{% endif %}
+
+
+</div>
+{% endblock content %}

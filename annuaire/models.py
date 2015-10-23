@@ -52,9 +52,12 @@ civilite_list 	= (
 	)
 
 cnu_list =(
-	(None,'sans objet'),
 	('25','25'),
 	('26','26'),
+	)
+
+cn_list =(
+	('41','41'),
 	)
 
 position_list 	= (
@@ -70,16 +73,15 @@ position_list 	= (
 	)
 
 poste_list 		= (
-	('CH','CH'),
-	('DOCT','DOCT'),
-	('EC','EC'),
-	('ENS','ENS'),
-	('ING','ING'),
+	('chercheur','chercheur'),
+	('doctorant','doctorant'),
+	('enseignant-chercheur','enseignant-chercheur'),
+	('enseignant','enseignant'),
+	('ingénieur','ingénieur'),
 	('ITA','ITA'),
-	('VIS','VIS'),
+	('visiteur','visiteur'),
 	)
 grade_list		= (
-	(None,'sans objet'),
 	('POSTDOC','POSTDOC'),
 	('ATER','ATER'),
 	('CDD ATER','CDD ATER'),
@@ -109,7 +111,6 @@ grade_list		= (
 	)
 
 bap_list 		= (
-	(None,'sans objet'),
 	('A','A'),
 	('B','B'),
 	('C','C'),
@@ -127,10 +128,19 @@ ouinon_list 	= (
 	('non','non'),
 	)
 
+equipe_list 	= (
+	('AGA','AGA'),
+	('AH','AH'),
+	('ANEDP','ANEDP'),
+	('PS','PS'),
+	('TOPO','TOPO'),
+	('SE','SE'),
+	)
+
 class MembreNew(models.Model):
 	civilite 			= models.CharField(max_length=10, null=True, blank=True,choices=civilite_list)
-	nom 				= models.CharField(max_length=50, null=True, blank=True)
-	prenom 				= models.CharField(max_length=50, null=True, blank=True)
+	nom 				= models.CharField(max_length=50)
+	prenom 				= models.CharField(max_length=50)
 	date_naissance 		= models.DateField(null=True,blank=True)
 	photo_url 			= models.URLField(null=True, blank=True)
 	mail 				= models.EmailField(null=True, blank=True)
@@ -139,12 +149,13 @@ class MembreNew(models.Model):
 	web 				= models.URLField(null=True,blank=True)
 	batiment 			= models.CharField(max_length=10, null=True, blank=True, choices=batiment_list)
 	bureau				= models.CharField(max_length=10, null=True, blank=True)
-	equipe 				= models.CharField(max_length=50, null=True,blank=True)
-	position			= models.CharField(max_length=50, null=True, blank=True, choices=position_list)
+	equipe 				= models.CharField(max_length=50, null=True,blank=True,choices=equipe_list)
+	position			= models.CharField(max_length=50, choices=position_list)
 	quotite 			= models.IntegerField(null=True, blank=True,)
-	nature_poste		= models.CharField(max_length=50, null=True, blank=True, choices=poste_list)
+	nature_poste		= models.CharField(max_length=50, choices=poste_list)
 	tutelle 			= models.CharField(max_length=50, null=True, blank=True)
 	cnu 				= models.CharField(max_length=10, null=True, blank=True, choices=cnu_list)
+	cn 					= models.CharField(max_length=10, null=True, blank=True, choices=cn_list)
 	grade 				= models.CharField(max_length=50, null=True, blank=True, choices=grade_list)
 	habilitation 		= models.CharField(max_length=10, null=True, blank=True, choices=ouinon_list)
 	entree 				= models.DateField(null=True,blank=True)

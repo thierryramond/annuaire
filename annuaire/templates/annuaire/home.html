@@ -3,8 +3,15 @@
 {% block content %}
 
 <div class="vcontainer">
-<h1>Annuaire du DMO</h1>
+	<h1>Annuaire du DMO</h1>
 
+	<div class="hcontainer">
+	{% if user.is_authenticated %}
+	Ravi de vous revoir, {{user}}!
+	{%else%}
+	Merci de vous  <a style="margin-left:5px;" href="{%url 'connexion' %}">connecter</a>
+	{%endif%}
+	</div>
 </div>
 
 

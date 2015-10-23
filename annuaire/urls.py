@@ -15,14 +15,18 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from annuaire.views import *
-
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
 	url(r'^$', HomeView.as_view(), name='home'),
     url(r'^home/$', HomeView.as_view(), name='home'),
-    url(r'^listeold/$',MembreOldList.as_view(),name='listeold'),
-    url(r'^listenew/$',MembreNewList.as_view(),name='listenew'),
-    url(r'^membrenew_update/(?P<pk>\d+)/$',MembreNewUpdate.as_view(),name='update'),
+    url(r'^listeold/$',login_required(MembreOldList.as_view()),name='listeold'),
+    url(r'^listenew/$',login_required(MembreNewList.as_view()),name='listenew'),
+    url(r'^membrenew_update/(?P<pk>\d+)/$',login_required(MembreNewUpdate.as_view()),name='update'),
     url(r'^nettoyage/$','annuaire.views.nettoyage_quotite',name='nettoyage'),
     url(r'^import/$','annuaire.views.activite_doct',name='import'),
+    url(r'^nouveau/$', login_required(MembreNewCreate.as_view()), name='create'),
+    url(r'^delete/(?P<pk>\d+)$', login_required(MembreNewDelete.as_view()), name='delete'),
+    url(r'^connexion/$', ConnexionView.as_view(), name='connexion'),
+    url(r'^deconnexion/$', 'annuaire.views.deconnexion', name='deconnexion'),
 ]
